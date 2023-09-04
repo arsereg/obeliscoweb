@@ -129,6 +129,33 @@
         };
       })();
     </script>
+
+    <script>
+
+      function sendWhatsappMessage(){
+        let nombre = document.getElementById('fn').value;
+        let email = document.getElementById('email').value;
+        let mensaje = document.getElementById('message').value;
+
+        if(!nombre.checkValidity() || !email.checkValidity() || !mensaje.checkValidity()){
+          return;
+        }
+
+        let content = 'Nombre: ' + nombre + "\n";
+        content += 'Email : ' + email + "\n";
+        content += 'Mensaje : ' + mensaje + "\n";
+
+        let finalMessage = encodeURIComponent(content);
+
+        url = `https://wa.me/50683179013?text=${finalMessage}`;
+
+        window.open(url, '_blank');
+
+
+      }
+
+    </script>
+
   </head>
 
 
@@ -234,6 +261,7 @@
                   </div>
                   <div class="col-12">
                     <button type="submit" class="btn btn-lg btn-primary w-100 w-sm-auto">Contáctenos</button>
+                    <button type="submit" class="btn btn-lg btn-primary w-100 w-sm-auto" style="background-color: #128C7E; border-color: #075E54" onclick="sendWhatsappMessage()">Enviar mensaje por Whatsapp</button>
                   </div>
                 </div>
               </form>
@@ -278,6 +306,7 @@
                     <li class="nav-item">
                       <a href="contacto.html" class="nav-link">Contáctenos</a>
                     </li>
+
                   </ul>
 
                 </div>
