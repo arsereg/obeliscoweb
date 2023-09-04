@@ -111,11 +111,9 @@
     <!-- Theme mode -->
     <script>
       let mode = window.localStorage.getItem('mode'),
-          root = document.getElementsByTagName('html')[0];
+              root = document.getElementsByTagName('html')[0];
       if (mode !== null && mode === 'dark') {
         root.classList.add('dark-mode');
-      } else {
-        root.classList.remove('dark-mode');
       }
     </script>
 
@@ -166,7 +164,7 @@
             <div class="offcanvas-body">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">Inicio</a>
+                  <a href="index.html" class="nav-link">Inicio</a>
                 </li>
 
                 <li class="nav-item">
