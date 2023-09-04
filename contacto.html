@@ -117,6 +117,38 @@
       }
     </script>
 
+    <script>
+
+      function sendWhatsappMessage(){
+        let nombre = document.getElementById('fn').value;
+        let email = document.getElementById('email').value;
+        let mensaje = document.getElementById('message').value;
+
+        if(!nombre || !email || !mensaje){
+          return;
+        }
+
+        let content = 'Hola, mi nombre es ' + nombre + ", ";
+        content += 'mi correo electrónico es ' + email + "\n";
+        content += 'Y tengo la siguiente consulta: \n' + mensaje;
+
+        let finalMessage = encodeURIComponent(content);
+
+        url = `https://wa.me/50683179013?text=${finalMessage}`;
+
+        window.open(url, '_blank');
+
+
+      }
+
+      function sendEmailMessage(){
+        alert('Sending email')
+      }
+
+
+
+    </script>
+
     <!-- Page loading scripts -->
     <script>
       (function () {
@@ -128,33 +160,10 @@
           }, 1000);
         };
       })();
-    </script>
-
-    <script>
-
-      function sendWhatsappMessage(){
-        let nombre = document.getElementById('fn').value;
-        let email = document.getElementById('email').value;
-        let mensaje = document.getElementById('message').value;
-
-        if(!nombre.checkValidity() || !email.checkValidity() || !mensaje.checkValidity()){
-          return;
-        }
-
-        let content = 'Nombre: ' + nombre + "\n";
-        content += 'Email : ' + email + "\n";
-        content += 'Mensaje : ' + mensaje + "\n";
-
-        let finalMessage = encodeURIComponent(content);
-
-        url = `https://wa.me/50683179013?text=${finalMessage}`;
-
-        window.open(url, '_blank');
-
-
-      }
 
     </script>
+
+
 
   </head>
 
@@ -242,7 +251,7 @@
               </div>
             </div>
             <div class="col-lg-6 offset-xl-1 offset-xxl-2 pt-3 pt-md-4 pt-lg-3 mt-3">
-              <form class="needs-validation" novalidate>
+              <form class="needs-validation" id="contactForm" novalidate>
                 <div class="row g-4">
                   <div class="col-sm-6">
                     <label for="fn" class="form-label fs-base">Nombre completo</label>
@@ -260,8 +269,8 @@
                     <div class="invalid-feedback">Introduzca un mensaje</div>
                   </div>
                   <div class="col-12">
-                    <button type="submit" class="btn btn-lg btn-primary w-100 w-sm-auto">Contáctenos</button>
-                    <button type="submit" class="btn btn-lg btn-primary w-100 w-sm-auto" style="background-color: #128C7E; border-color: #075E54" onclick="sendWhatsappMessage()">Enviar mensaje por Whatsapp</button>
+                    <button type="submit" class="btn btn-lg btn-primary w-100 w-sm-auto" name="sendEmail" formaction="sendEmailMessage()">Contáctenos</button>
+                    <button type="submit" class="btn btn-lg btn-primary w-100 w-sm-auto" name="sendWhatsapp" style="background-color: #128C7E; border-color: #075E54" formaction="sendWhatsappMessage()">Enviar mensaje por Whatsapp</button>
                   </div>
                 </div>
               </form>
@@ -351,4 +360,15 @@
     <!-- Main Theme Script -->
     <script src="assets/js/theme.min.js"></script>
   </body>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      if (document.activeElement.getAttribute('formaction') === 'sendWhatsappMessage()') {
+        sendWhatsappMessage(); // Execute the first function
+      } else if (document.activeElement.getAttribute('formaction') === 'sendEmailMessage()') {
+        sendEmailMessage(); // Execute the second function
+      }
+    })
+  </script>
 </html>
