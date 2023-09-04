@@ -136,7 +136,9 @@
 
         url = `https://wa.me/50683179013?text=${finalMessage}`;
 
-        window.open(url, '_blank');
+        var link = document.getElementById('link');
+        link.setAttribute('href', url);
+        link.click();
 
 
       }
@@ -370,5 +372,9 @@
         sendEmailMessage(); // Execute the second function
       }
     })
+
+    var linkElement = document.createElement('a');
+    linkElement.id = 'link';
+    window.document.body.appendChild(linkElement);
   </script>
 </html>
