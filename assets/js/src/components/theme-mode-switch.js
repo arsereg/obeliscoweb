@@ -14,20 +14,7 @@ const themeModeSwitch = (() => {
   if (mode === 'dark') {
     root.classList.add('dark-mode');
     checkbox.checked = true;
-  } else {
-    root.classList.remove('dark-mode');
-    checkbox.checked = false;
   }
-
-  modeSwitch.addEventListener('click', (e) => {
-    if (checkbox.checked) {
-      root.classList.add('dark-mode');
-      window.localStorage.setItem('mode', 'dark');
-    } else {
-      root.classList.remove('dark-mode');
-      window.localStorage.setItem('mode', 'light');
-    }
-  });
 
 })();
 
