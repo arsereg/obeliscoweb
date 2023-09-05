@@ -118,37 +118,9 @@
     </script>
 
     <script>
-
-      function sendWhatsappMessage(){
-        let nombre = document.getElementById('fn').value;
-        let email = document.getElementById('email').value;
-        let mensaje = document.getElementById('message').value;
-
-        if(!nombre || !email || !mensaje){
-          return;
-        }
-
-        let content = 'Hola, mi nombre es ' + nombre + ", ";
-        content += 'mi correo electrónico es ' + email + "\n";
-        content += 'Y tengo la siguiente consulta: \n' + mensaje;
-
-        let finalMessage = encodeURIComponent(content);
-
-        url = `https://wa.me/50683179013?text=${finalMessage}`;
-
-        var link = document.getElementById('link');
-        link.setAttribute('href', url);
-        link.click();
-
-
-      }
-
       function sendEmailMessage(){
         alert('Sending email')
       }
-
-
-
     </script>
 
     <!-- Page loading scripts -->
@@ -164,9 +136,6 @@
       })();
 
     </script>
-
-
-
   </head>
 
 
@@ -272,7 +241,7 @@
                   </div>
                   <div class="col-12">
                     <button type="submit" class="btn btn-lg btn-primary w-100 w-sm-auto" name="sendEmail" formaction="sendEmailMessage()">Contáctenos</button>
-                    <button type="submit" class="btn btn-lg btn-primary w-100 w-sm-auto" name="sendWhatsapp" style="background-color: #128C7E; border-color: #075E54" formaction="sendWhatsappMessage()">Enviar mensaje por Whatsapp</button>
+                    <a class="btn btn-lg btn-primary w-100 w-sm-auto" id="whatsappButton" name="sendWhatsapp" style="background-color: #128C7E; border-color: #075E54" href="https://wa.me/50683179013" target="_blank">Enviar mensaje por Whatsapp</a>
                   </div>
                 </div>
               </form>
@@ -361,7 +330,6 @@
 
     <!-- Main Theme Script -->
     <script src="assets/js/theme.min.js"></script>
-    <a href="#" id="link" style="display:none"></a>
   </body>
 
   <script>
@@ -372,7 +340,47 @@
       } else if (document.activeElement.getAttribute('formaction') === 'sendEmailMessage()') {
         sendEmailMessage(); // Execute the second function
       }
-    })
+    });
+
+
+    function prepareLink(){
+      let content = '';
+      if (nombre){
+        content = 'Hola, mi nombre es ' + nombre + ", ";
+      }
+      if (email){
+          content += 'mi correo electrónico es ' + email + "\n";
+      }
+      if (mensaje){
+          content += 'y tengo la siguiente consulta: \n' + mensaje;
+      }
+      let finalMessage = encodeURIComponent(content);
+      url = `https://wa.me/50683179013?text=${finalMessage}`;
+      document.getElementById('whatsappButton').setAttribute('href', url);
+    }
+
+
+
+    nombre = '';
+    email = '';
+    mensaje = '';
+
+    document.getElementById('fn').addEventListener('change', () => {
+      this.nombre = document.getElementById('fn').value;
+      this.prepareLink();
+    });
+
+    document.getElementById('email').addEventListener('change', () => {
+      this.email = document.getElementById('email').value;
+      this.prepareLink();
+    });
+
+    document.getElementById('message').addEventListener('change', () => {
+      this.mensaje = document.getElementById('message').value;
+      this.prepareLink();
+    });
+
+
 
   </script>
 </html>
