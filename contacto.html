@@ -117,12 +117,6 @@
       }
     </script>
 
-    <script>
-      function sendEmailMessage(){
-        alert('Sending email')
-      }
-    </script>
-
     <!-- Page loading scripts -->
     <script>
       (function () {
@@ -217,34 +211,40 @@
               <h1 class="h3 mb-2">¿Desea trabajar con nosotros?</h1>
               <h2 class="display-1 text-gradient-primary pb-sm-2 pb-md-3 mb-3">Hablemos</h2>
               <div class="nav d-block lead pt-lg-5">
-                <a href="#" class="nav-link fw-normal text-decoration-underline p-0 mb-4">contacto@obeliscoestudiolegal.com</a>
-                <div class="text-nav">+506 8317 9013</div>
+                <a href="mailto:contacto@obeliscoestudiolegal.com" class="nav-link fw-normal text-decoration-underline p-0 mb-4">contacto@obeliscoestudiolegal.com</a>
+                <div class="nav-link fw-normal text-decoration-underline p-0 mb-4"><a href="tel:+50683179013">+506 8317 9013</a></div>
               </div>
             </div>
             <div class="col-lg-6 offset-xl-1 offset-xxl-2 pt-3 pt-md-4 pt-lg-3 mt-3">
-              <form class="needs-validation" id="contactForm" novalidate>
+
+              <form class="needs-validation" id="contactForm" action="http://formspree.io/f/xaygjrer" method="POST">
                 <div class="row g-4">
                   <div class="col-sm-6">
                     <label for="fn" class="form-label fs-base">Nombre completo</label>
-                    <input type="text" class="form-control form-control-lg" id="fn" required>
+                    <input type="text" class="form-control form-control-lg" id="fn" name="name" required>
                     <div class="invalid-feedback">Por favor ingrese su nombre completo</div>
                   </div>
                   <div class="col-sm-6">
                     <label for="email" class="form-label fs-base">Email</label>
-                    <input type="email" class="form-control form-control-lg" id="email" required>
+                    <input type="email" class="form-control form-control-lg" id="email" name="email" required>
                     <div class="invalid-feedback">Por favor ingrese un correo electrónico correcto</div>
                   </div>
                   <div class="col-12 pb-2">
                     <label for="message" class="form-label fs-base">Mensaje</label>
-                    <textarea class="form-control form-control-lg" id="message" rows="3" required></textarea>
+                    <textarea class="form-control form-control-lg" id="message" rows="3" name="message" required></textarea>
                     <div class="invalid-feedback">Introduzca un mensaje</div>
                   </div>
                   <div class="col-12">
-                    <button type="submit" class="btn btn-lg btn-primary w-100 w-sm-auto" name="sendEmail" formaction="sendEmailMessage()">Contáctenos</button>
+                    <button type="submit" class="btn btn-lg btn-primary w-100 w-sm-auto">Contáctenos</button>
                     <a class="btn btn-lg btn-primary w-100 w-sm-auto" id="whatsappButton" name="sendWhatsapp" style="background-color: #128C7E; border-color: #075E54" href="https://wa.me/50683179013" target="_blank">Enviar mensaje por Whatsapp</a>
                   </div>
                 </div>
               </form>
+
+
+
+
+
             </div>
           </div>
         </div>
@@ -333,16 +333,6 @@
   </body>
 
   <script>
-    document.getElementById('contactForm').addEventListener('submit', function(e){
-      e.preventDefault();
-      if (document.activeElement.getAttribute('formaction') === 'sendWhatsappMessage()') {
-        sendWhatsappMessage(); // Execute the first function
-      } else if (document.activeElement.getAttribute('formaction') === 'sendEmailMessage()') {
-        sendEmailMessage(); // Execute the second function
-      }
-    });
-
-
     function prepareLink(){
       let content = '';
       if (nombre){
